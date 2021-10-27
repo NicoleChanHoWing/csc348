@@ -112,6 +112,11 @@ class PostsController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $postsvalues = request()->except(['_token','_method','posts.updated_at']);
+        Posts::where('id','=',$id)->update($postsvalues);
+
+        $post['post'] = Posts::findOrFail($id);
+        return view('posts.update',$post);
 
     }
 
