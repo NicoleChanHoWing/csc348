@@ -142,6 +142,9 @@ class PostsController extends Controller
     public function destroy($id)
     {
 
+        $comments = CommentsPost::where('id_post','=',$id)->delete();
+        Posts::destroy($id);
+        return redirect('posts');
     }
 
      /**
