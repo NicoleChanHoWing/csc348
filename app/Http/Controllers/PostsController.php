@@ -16,6 +16,17 @@ class PostsController extends Controller
     public function index()
     {
         //
+        $user=request()->session()->get('user');
+        if (!isset($user['user'])){
+            $errormessage['errormessage']="your session expired please log in again";
+            return view('login.login',$errormessage);
+        }
+
+
+        $postsvalues['posts'] = Posts::all();
+        $postsvalues['uservalue'] = $user['user'];
+
+        return view('posts.index',$postsvalues);
 
     }
 
@@ -27,6 +38,7 @@ class PostsController extends Controller
     public function create()
     {
         //
+
 
     }
 
