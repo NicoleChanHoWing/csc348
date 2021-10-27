@@ -38,6 +38,13 @@ class PostsController extends Controller
     public function create()
     {
         //
+        $user=request()->session()->get('user');
+        if (!isset($user['user'])){
+            $errormessage['errormessage']="your session expired please log in again";
+            return view('login.login',$errormessage);
+        }
+
+        return view('posts.createpost');
 
 
     }
@@ -51,6 +58,12 @@ class PostsController extends Controller
     public function store(Request $request)
     {
         //
+
+        $postsvalues = request()->except('_token');
+        Posts::insert($postsvalues);
+        //return response()->json($postsvalues);
+
+        return view('posts.createpost');
 
 
     }
