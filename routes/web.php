@@ -20,7 +20,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
+Route::resource('posts',PostsController::class);
 Route::get('/login', [LoginController::class,'index']);
 Route::post('/login', [LoginController::class,'verifylogin']);
 
