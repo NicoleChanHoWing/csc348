@@ -17,13 +17,14 @@ class CommentsPostController extends Controller
     {
         //
         $user=request()->session()->get('user');
-        if (!isset($user['user'])){
+        if (!isset($user)){
             $errormessage['errormessage']="your session expired please log in again";
             return view('login.login',$errormessage);
         }
+        $post['user'] =$user;
 
 
-        return view('comments.commentlist');
+        return view('comments.commentlist',$post);
     }
 
     /**

@@ -3,7 +3,7 @@
 <br>
 <form action="{{url('/posts')}}" method="post">
 @csrf
-<input style="display: none;" type="text" name="userid" id="userid" value="1">
+<input style="display: none;" type="text" name="userid" id="userid" value="{{$user->id}}">
 
 <div class="form-group col-6">
     <label for="title">Title</label>

@@ -35,7 +35,10 @@ class LoginController extends Controller
             return view('login.login',$errormessage);
         }
 
-        request()->session()->put('user',$userarray);
+       // request()->session()->put('user',$userarray);
+        foreach($userarray['user'] as $user){
+            request()->session()->put('user',$user);
+           }
         return redirect('posts');
 
 

@@ -17,14 +17,14 @@ class PostsController extends Controller
     {
         //
         $user=request()->session()->get('user');
-        if (!isset($user['user'])){
+        if (!isset($user)){
             $errormessage['errormessage']="your session expired please log in again";
             return view('login.login',$errormessage);
         }
 
 
         $postsvalues['posts'] = Posts::all();
-        $postsvalues['uservalue'] = $user['user'];
+        $postsvalues['user'] = $user;
 
         return view('posts.index',$postsvalues);
 
@@ -39,12 +39,14 @@ class PostsController extends Controller
     {
         //
         $user=request()->session()->get('user');
-        if (!isset($user['user'])){
+        if (!isset($user)){
             $errormessage['errormessage']="your session expired please log in again";
             return view('login.login',$errormessage);
         }
+        $postsvalues['user'] = $user;
 
-        return view('posts.createpost');
+
+        return view('posts.createpost',$postsvalues);
 
 
     }
@@ -63,7 +65,10 @@ class PostsController extends Controller
         Posts::insert($postsvalues);
         //return response()->json($postsvalues);
 
-        return view('posts.createpost');
+        $user=request()->session()->get('user');
+        $post['user'] = $user;
+
+        return view('posts.createpost',$post);
 
 
     }
@@ -77,7 +82,7 @@ class PostsController extends Controller
     public function show($id)
     {
         $user=request()->session()->get('user');
-        if (!isset($user['user'])){
+        if (!isset($user)){
             $errormessage['errormessage']="your session expired please log in again";
             return view('login.login',$errormessage);
         }
@@ -86,6 +91,7 @@ class PostsController extends Controller
 
         $post['post'] = Posts::findOrFail($id);
         $post['comments'] = CommentsPost::where('id_post','=',$id)->get();
+        $post['user'] = $user;
 
         return view('comments.commentlist',$post);
         //return response()->json($posts);
@@ -102,18 +108,11 @@ class PostsController extends Controller
     {
 
         //
+        $post['post'] = Posts::findOrFail($id);
         $user=request()->session()->get('user');
-        if (!isset($user['user'])){
-            $errormessage['errormessage']="your session expired please log in again";
-            return view('login.login',$errormessage);
-        }
+        $post['user'] = $user;
 
-
-        $postsvalues['posts'] = Posts::all();
-        $postsvalues['uservalue'] = $user['user'];
-
-        return view('posts.index',$postsvalues);
-
+        return view('posts.update',$post);
     }
 
     /**
@@ -128,7 +127,9 @@ class PostsController extends Controller
         $postsvalues = request()->except(['_token','_method','posts.updated_at']);
         Posts::where('id','=',$id)->update($postsvalues);
 
+        $user=request()->session()->get('user');
         $post['post'] = Posts::findOrFail($id);
+        $post['user'] = $user;
         return view('posts.update',$post);
 
     }

@@ -35,7 +35,7 @@
 <form action="{{url('/comment/'.$post->id)}}" method="post">
 @csrf
 
-<input style="display: none;" type="text" name="userid" id="userid" value="1">
+<input style="display: none;" type="text" name="userid" id="userid" value="{{$user->id}}">
 <input style="display: none;" type="text" name="id_post" id="id_post" value="{{$post->id}}">
 
 <div class="form-group col-6">

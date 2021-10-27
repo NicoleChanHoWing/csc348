@@ -1,9 +1,7 @@
 @include('commons.head')
 <h1>Posts List</h1>
-@foreach($uservalue as $user)
 <h5>Welcome {{$user->name}}</h5>
 <br>
-@endforeach
 <a class="btn btn-primary samebuttonwith newpost float-right" href="{{url('posts/create')}}">New Post</a>
 <a class="btn btn-primary samebuttonwith newpost float-right" href="{{url('logout')}}">Log out</a>
 <br>
