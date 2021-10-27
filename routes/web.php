@@ -24,5 +24,6 @@ Route::resource('posts',PostsController::class);
 Route::get('/login', [LoginController::class,'index']);
 Route::post('/login', [LoginController::class,'verifylogin']);
 Route::get('/logout', [PostsController::class,'logout']);
+Route::post('/comment/{postid}', [CommentsPostController::class,'store']);
 
 

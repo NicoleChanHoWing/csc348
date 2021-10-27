@@ -76,6 +76,19 @@ class PostsController extends Controller
      */
     public function show($id)
     {
+        $user=request()->session()->get('user');
+        if (!isset($user['user'])){
+            $errormessage['errormessage']="your session expired please log in again";
+            return view('login.login',$errormessage);
+        }
+
+
+
+        $post['post'] = Posts::findOrFail($id);
+        $post['comments'] = CommentsPost::where('id_post','=',$id)->get();
+
+        return view('comments.commentlist',$post);
+        //return response()->json($posts);
 
     }
 
