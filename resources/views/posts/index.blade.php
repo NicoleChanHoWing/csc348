@@ -13,6 +13,10 @@
             <th>Title</th>
             <th>UserID</th>
             <th>Created At</th>
+            @if ($user->usertype==2)
+            <th>Qty Comments</th>
+            <th>Qty Views</th>
+            @endif
             <th>Comment Post</th>
             <th>Edit Post</th>
             <th>Delete Post</th>
@@ -25,6 +29,10 @@
             <td>{{$post->title}}</td>
             <td>{{$post->userid}}</td>
             <td>{{$post->created_at}}</td>
+            @if ($user->usertype==2)
+            <td>0</td>
+            <td>0</td>
+            @endif
             <td> <a class="btn btn-primary samebuttonwith" href="{{url('/posts/'.$post->id)}}">Comment Post</a></td>
             <td><a class="btn btn-primary samebuttonwith" href="{{url('posts/'.$post->id.'/edit')}}">Edit Post</a></td>
             <td>
