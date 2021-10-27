@@ -30,8 +30,8 @@
             <td>{{$post->userid}}</td>
             <td>{{$post->created_at}}</td>
             @if ($user->usertype==2)
-            <td>0</td>
-            <td>0</td>
+            <td>{{$post->views}}</td>
+            <td>{{$post->comments}}</td>
             @endif
             <td> <a class="btn btn-primary samebuttonwith" href="{{url('/posts/'.$post->id)}}">Comment Post</a></td>
             <td><a class="btn btn-primary samebuttonwith" href="{{url('posts/'.$post->id.'/edit')}}">Edit Post</a></td>

@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\CommentsPost;
 use App\Models\Posts;
+use App\Models\PostsViews;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PostsController extends Controller
 {
@@ -23,7 +25,8 @@ class PostsController extends Controller
         }
 
 
-        $postsvalues['posts'] = Posts::all();
+        //$postsvalues['posts'] = Posts::all();
+        $postsvalues['posts'] = DB::table('posts')->select(DB::raw('*, (select count(id) from posts_views v where v.id_post=posts.id) as views,(select count(id) from comments_posts p where p.id_post=posts.id) as comments'))->get();
         $postsvalues['user'] = $user;
 
         return view('posts.index',$postsvalues);
@@ -87,6 +90,10 @@ class PostsController extends Controller
             return view('login.login',$errormessage);
         }
 
+
+        //Inserting Viewes
+        $viewvalues = array('id_post' => $id,'userid' => $user->id);
+        PostsViews::insert($viewvalues);
 
 
         $post['post'] = Posts::findOrFail($id);
