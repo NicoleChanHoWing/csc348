@@ -23,4 +23,6 @@ Route::get('/', function () {
 Route::resource('posts',PostsController::class);
 Route::get('/login', [LoginController::class,'index']);
 Route::post('/login', [LoginController::class,'verifylogin']);
+Route::get('/logout', [PostsController::class,'logout']);
+
 
