@@ -16,11 +16,19 @@ class CreatePostsViewsTable extends Migration
     {
         Schema::create('posts_views', function (Blueprint $table) {
             $table->id();
-            $table->integer('id_post');
-            $table->integer('userid');
+            $table->integer('id_post')->unsigned();
+            $table->integer('userid')->unsigned();
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('update_at')->nullable();
+
+            //$table->foreign('userid')->references('id')->on('users');
+            //$table->foreign('id_post')->references('id')->on('posts');
         });
+
+
+
+
+
     }
 
     /**

@@ -18,10 +18,13 @@ class CreatePostsTable extends Migration
             $table->id();
             $table->string('title');
             $table->string('content');
-            $table->integer('userid');
+            $table->Integer('userid');
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('update_at')->nullable();
         });
+
+
+
     }
 
     /**

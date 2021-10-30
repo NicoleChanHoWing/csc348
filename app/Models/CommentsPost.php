@@ -9,4 +9,14 @@ class CommentsPost extends Model
 {
     use HasFactory;
     public $timestamps = false;
+
+    public function user()
+    {
+        return $this->hasOne(User::class);
+    }
+
+    public function post()
+    {
+        return $this->hasOne(Posts::class);
+    }
 }

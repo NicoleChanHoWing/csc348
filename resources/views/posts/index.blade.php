@@ -14,8 +14,8 @@
             <th>UserID</th>
             <th>Created At</th>
             @if ($user->usertype==2)
-            <th>Qty Comments</th>
             <th>Qty Views</th>
+            <th>Qty Comments</th>
             @endif
             <th>Comment Post</th>
             <th>Edit Post</th>
