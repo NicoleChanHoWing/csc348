@@ -19,7 +19,7 @@ class CreatePostsViewsTable extends Migration
             $table->integer('id_post')->unsigned();
             $table->integer('userid')->unsigned();
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->timestamp('update_at')->nullable();
+            $table->timestamp('updated_at')->nullable();
 
             //$table->foreign('userid')->references('id')->on('users');
             //$table->foreign('id_post')->references('id')->on('posts');

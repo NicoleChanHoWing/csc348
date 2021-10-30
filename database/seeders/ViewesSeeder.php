@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\PostsViews;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -15,86 +16,7 @@ class ViewesSeeder extends Seeder
     public function run()
     {
         //
-        DB::table('posts_views')->insert(
-            array(
-                'id_post' => 2,
-                'userid' => 1
-            )
-        );
-
-
-        DB::table('posts_views')->insert(
-            array(
-                'id_post' => 3,
-                'userid' => 1
-            )
-        );
-
-
-        DB::table('posts_views')->insert(
-            array(
-                'id_post' => 4,
-                'userid' => 1
-            )
-        );
-
-
-        DB::table('posts_views')->insert(
-            array(
-                'id_post' => 2,
-                'userid' => 2
-            )
-        );
-
-
-        DB::table('posts_views')->insert(
-            array(
-                'id_post' => 2,
-                'userid' => 3
-            )
-        );
-
-
-        DB::table('posts_views')->insert(
-            array(
-                'id_post' => 3,
-                'userid' => 2
-            )
-        );
-
-
-        DB::table('posts_views')->insert(
-            array(
-                'id_post' => 3,
-                'userid' => 2
-            )
-        );
-
-
-        DB::table('posts_views')->insert(
-            array(
-                'id_post' => 3,
-                'userid' => 3
-            )
-        );
-
-
-        DB::table('posts_views')->insert(
-            array(
-                'id_post' => 4,
-                'userid' => 2
-            )
-        );
-
-
-        DB::table('posts_views')->insert(
-            array(
-                'id_post' => 4,
-                'userid' => 3
-            )
-        );
-
-
+        PostsViews::factory(150)->create();
 
     }
 }
